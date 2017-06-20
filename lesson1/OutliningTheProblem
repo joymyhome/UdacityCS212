@@ -1,0 +1,11 @@
+#a lesson to learn some poker knowledge
+#rank 大小， suit 花色
+#function：poker(hands);inputs:a list of poker hands;outputs:the best hand
+#from wikipedia:5张牌叫做1hand;每一手有一个大小，跟我们的斗地主差不多（(⊙﹏⊙)b）;A最大，2最小（跟德州扑克的规矩一样）
+#花色：方片：diamond，黑桃：spade，梅花：club，红桃：heart
+#glossary 两对：two pairs or two of a kind.
+#flush:同花
+#straight：顺子
+#straight flush:同花顺
+#三带二：full house
+#（中了上次跟朋友们玩德扑的毒）
