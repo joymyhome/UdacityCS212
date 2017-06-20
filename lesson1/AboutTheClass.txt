@@ -1,0 +1,16 @@
+# -*- coding: utf-8 -*
+# The use of sum function in Python
+#Compute the sum of a list of numbers
+#example. sum ∑i(x_i)^2
+'''
+def ss(nums):  #input is a list of numbers, output should be the sum of the square of those numbers in the list
+    total = 0
+    for i in range(len(nums)):
+        total = (total + nums[i]**2)
+    return total
+'''
+# A more easy code
+def ss(nums):
+    return sum(x**2 for x in nums)  #the code is more easy
+
+print ss([1,2,3])
