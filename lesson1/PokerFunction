@@ -33,6 +33,9 @@ def test():
     assert poker([fh,fh]) == fh  #extreme value'''
     assert poker([sf]) == sf #检查一手hand'''
     assert poker([sf] + 99*[fh]) == sf #检查100手也可以运行 '''
+    assert hand_rank(sf) == (8, 10)  #对每一个函数都要进行test，sf不用加[]，我还不太明白why
+    assert hand_rank(fk) == (7, 9, 7)
+    assert hand_rank(fh) == (6,10,7)
     #因为有9中不同的hand，要至少有9个test，分别检查，真实情况下可能更多以确保程序的正确性
     return "tests pass"
 
@@ -40,10 +43,23 @@ print test()
 
 def hand_rank(hand):
     #Return a value indicating the ranking of a hand
-    ranks = card_ranks(hand)
+    ranks = card_ranks(hand) #return the cards in sorted order
     if straight(ranks) and flush(hand): #straight flush同花顺
         return (8, max(ranks)) #2 3 4 5 6 (8, 6), 6 7 8 9 10 (8, 10)
     elif kind(4, ranks): #这里让kind这个函数如果是真时返回的是数值（也就是下一句用到的），如果不对就是错误。boolean 和数字的同时运用
         return (7, kind(4, ranks), kind(1, ranks)) #9 9 9 9 3 (7,9,3)
-    
+    elif kind(3, ranks) and kind(2, ranks): #full house
+        return (6, kind(3, ranks), kind(2, ranks))
+    elif flush(hand):#同花
+        return (5, ranks)
+    elif straight(ranks):#顺子
+        return (4, max(ranks))
+    elif kind(3, ranks): #三张
+        return (3, kind(3, ranks), ranks)
+    elif two_pair(ranks)#两对
+        return (2, two_pair(ranks), ranks)
+    elif kind(2, ranks):#一对
+        return (1, kind(2, ranks), ranks)
+    else:#啥也没有
+        return (0, ranks)
 
