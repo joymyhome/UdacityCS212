@@ -28,6 +28,9 @@ def test():
     If it is not true, then the program will stop and print an error msg. 
     If it is true, it will move on to return test pass
     '''
+    assert card_ranks(sf) == [10, 9, 8, 7, 6]
+    assert card_ranks(fk) == [9, 9, 9, 9, 7]
+    assert card_ranks(fh) == [10, 10, 10, 7, 7]
     assert poker([sf,fk,fh]) == sf 
     assert poker([fk,fh]) == fk
     assert poker([fh,fh]) == fh  #extreme value'''
