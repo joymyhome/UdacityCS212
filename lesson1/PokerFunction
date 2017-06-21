@@ -1,0 +1,46 @@
+#max 的使用方法
+#max([3,4,5,0]) 返回 5
+#max([3,4,-5,0], key=abs) 返回-5 give me the maximum accorkding to key=abs(the absolute values of those numbers)
+keyword argument
+#当想运行几个案例去test function时，可以用def test()
+#tuples （7,9,5）这是三个数group到一起的set；而且（7,9,3）>(7,3,2)compare from left to right
+#在比较所有hands时，不单单是full house和staight flust的比较，full house之间也要比较。所以引入tuples，用第一个数字展示出rank，第二个展示都是rank 7时那个更大
+
+# -*- coding: utf-8 -*
+#the Poker Function
+
+def poker(hands):
+    #return the best hand: poker([hand, ...]) => best hand
+    return max(hands, key = hand_rank) #key = function, returns the max according to the function hand_rank 翻译过来是，使得hand_rank最大的hands）
+
+'''
+The whole idea of having tests like this is a vital part of software development.
+It's important that each part of the specification gets turned into a piece of code
+that implements it and a test that tests it.
+'''
+def test():
+    #test cases for the functions in poker program.
+    #one important principle of testing is to do extreme values
+    sf = "6C 7C 8C 9C TC".split() #straight flush
+    fk = "9D 9H 9S 9C 7D".split() #four of a kind
+    fh = "TD TC TH 7C 7D".split() #full house
+    '''#I am asserting the following thing must be true. 
+    If it is not true, then the program will stop and print an error msg. 
+    If it is true, it will move on to return test pass
+    '''
+    assert poker([sf,fk,fh]) == sf 
+    assert poker([fk,fh]) == fk
+    assert poker([fh,fh]) == fh  #extreme value'''
+    assert poker([sf]) == sf #检查一手hand'''
+    assert poker([sf] + 99*[fh]) == sf #检查100手也可以运行 '''
+    #因为有9中不同的hand，要至少有9个test，分别检查，真实情况下可能更多以确保程序的正确性
+    return "tests pass"
+
+print test()
+
+def hand_rank(hand):
+    #Return a value indicating the ranking of a hand
+    ranks = card_ranks(hand)
+    
+    return???
+    
