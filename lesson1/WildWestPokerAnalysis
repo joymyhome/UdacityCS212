@@ -1,0 +1,13 @@
+分析各手的过程
+一共有9种hands，所以依次排位0-8
+其中straight flush最高，排位8
+eg. 梅花11 10 9 8 7  => <8,11>, 其中8代表hands 种类rank，11代表开始的数字
+eg. Four of a kind => A A A A Q, <7, 14, 12>,其中A是第14位，按照顺序来的话
+eg. Full house => 8 8 8 K K, <6, 8, K>
+<major ranking, minor ranking, third ranking>
+eg. flush => all diamonds:10 8 7 5 3, <5,[10,8,7,5,3]>
+eg. straight => 11,10,9,8,7，不同花色,<4,11>
+eg. three of a kind=>7,7,7,5,2 <3,7,[5,2]> (<3,7,[7,7,7,5,2])
+eg. two pairs =>j,j,3,3,k <2,11,3,[13,11,11,3,3]>
+eg. pair of two =>2,2,j,6,3 <1,2,[11,6,3,2,2]>
+eg. nothing => 7,5,4,3,2 <0,7,5,4,3,2>
