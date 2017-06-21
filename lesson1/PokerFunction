@@ -24,17 +24,36 @@ def card_ranks(hand):
     ranks = ['--23456789TJQKA'.index(r) for r, s in cards] #each card is a two value element,break down to r and s. But we only collect up ranks and make it into a list
     ranks.sort(reverse = True) #sort with higher come first
     return ranks
+def straight(ranks):
+    #Return True if the ordered ranks form a 5-card straight.
+'''    
+    if ranks.sort(reverse = True) == ranks:  #我这样写报错，why
+    	return True
+    else:
+    	return False
+'''    
+    return (max(ranks)-min(ranks) == 4) and len(set(ranks)) == 5 #最大和最小差距为4 而且 all the cards are different
+    
+def flush(hand):
+	#return true if all the cards have the same suit
+	suits = [s for r, s in hand] #将s列出来成为一个list
+	return len(set(suits)) == 1 #list中只有一个元素，也就是所有card的suit相同。
+
 
 def test():
     #test cases for the functions in poker program.
     #one important principle of testing is to do extreme values
-    sf = "6C 7C 8C 9C TC".split() #straight flush
+    sf = "6C 7C 8C 9C TC".split() #straight flush output:['6C', '7C', '8C', '9C', 'TC']
     fk = "9D 9H 9S 9C 7D".split() #four of a kind
     fh = "TD TC TH 7C 7D".split() #full house
     '''#I am asserting the following thing must be true. 
     If it is not true, then the program will stop and print an error msg. 
     If it is true, it will move on to return test pass
     '''
+    assert straight([9,8,7,6,5]) == True #straight takes as input a list of ranks, not a hand of card
+    assert straight([9,8,8,6,5]) == False
+    assert flush(sf) == True
+    assert flush(fk) == False
     assert card_ranks(sf) == [10, 9, 8, 7, 6]
     assert card_ranks(fk) == [9, 9, 9, 9, 7]
     assert card_ranks(fh) == [10, 10, 10, 7, 7]
