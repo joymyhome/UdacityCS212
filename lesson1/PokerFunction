@@ -39,6 +39,12 @@ def flush(hand):
 	suits = [s for r, s in hand] #将s列出来成为一个list
 	return len(set(suits)) == 1 #list中只有一个元素，也就是所有card的suit相同。
 
+def kind(n, ranks):
+    """Return the first rank that this hand has exactly n of.
+    Return None if there is no n-of-a-kind in the hand."""
+    for r in ranks:
+    	if ranks.count(r) == n: return r #.count()数ranks中的r出现过多少次
+    return None
 
 def test():
     #test cases for the functions in poker program.
@@ -46,10 +52,19 @@ def test():
     sf = "6C 7C 8C 9C TC".split() #straight flush output:['6C', '7C', '8C', '9C', 'TC']
     fk = "9D 9H 9S 9C 7D".split() #four of a kind
     fh = "TD TC TH 7C 7D".split() #full house
+    tp = "5S 5D 9H 9C 6S".splic() #two pairs
     '''#I am asserting the following thing must be true. 
     If it is not true, then the program will stop and print an error msg. 
     If it is true, it will move on to return test pass
     '''
+    fkranks = card_ranks(fk)
+    tpranks = card_ranks(tp)
+    assert kind(4, fkranks) == 9
+    assert kind(3, fkranks) == None
+    assert kind(2, fkranks) == None
+    assert kind(1, fkranks) == 7
+    assert two_pair(fkranks) == None
+    assert two_pair(tpranks) == (9, 5)
     assert straight([9,8,7,6,5]) == True #straight takes as input a list of ranks, not a hand of card
     assert straight([9,8,8,6,5]) == False
     assert flush(sf) == True
