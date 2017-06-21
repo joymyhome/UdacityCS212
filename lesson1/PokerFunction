@@ -18,6 +18,13 @@ The whole idea of having tests like this is a vital part of software development
 It's important that each part of the specification gets turned into a piece of code
 that implements it and a test that tests it.
 '''
+def card_ranks(hand):
+    #return a list of the ranks, sorted with higher first
+    # we are iterating over the cards and we have 2 values: the rank and the suit
+    ranks = [r for r, s in cards] #each card is a two value element,break down to r and s. But we only collect up ranks and make it into a list
+    ranks.sort(reverse = True) #sort with higher come first
+    return ranks
+
 def test():
     #test cases for the functions in poker program.
     #one important principle of testing is to do extreme values
