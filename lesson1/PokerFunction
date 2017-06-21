@@ -21,7 +21,7 @@ that implements it and a test that tests it.
 def card_ranks(hand):
     #return a list of the ranks, sorted with higher first
     # we are iterating over the cards and we have 2 values: the rank and the suit
-    ranks = [r for r, s in cards] #each card is a two value element,break down to r and s. But we only collect up ranks and make it into a list
+    ranks = ['--23456789TJQKA'.index(r) for r, s in cards] #each card is a two value element,break down to r and s. But we only collect up ranks and make it into a list
     ranks.sort(reverse = True) #sort with higher come first
     return ranks
 
