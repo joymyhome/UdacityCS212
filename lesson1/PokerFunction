@@ -11,8 +11,18 @@
 
 def poker(hands):
     #return the best hand: poker([hand, ...]) => best hand
-    return max(hands, key = hand_rank) #key = function, returns the max according to the function hand_rank 翻译过来是，使得hand_rank最大的hands）
-
+    return allmax(hands, key = hand_rank) #key = function, returns the max according to the function hand_rank 翻译过来是，使得hand_rank最大的hands）
+def allmax(iterable, key=None):
+	#Return a list of all items equal to the max of the iterable.
+	result, maxval = [], None  #initial values for result and max value.
+	key = key or (lambda x: x) #use the function provided or use the function that maps an argument to itself.
+    for x in iterable:
+        xval = key(x)
+        if not result or xval > maxval: #if xval is greater than maxval or if I don't have a result yet at all(注：not result在一起看，not result 就是 result还没有值)
+            result, maxval = [x], xval
+        elif xval == maxval:
+            result.append(x)
+    return result
 '''
 The whole idea of having tests like this is a vital part of software development.
 It's important that each part of the specification gets turned into a piece of code
