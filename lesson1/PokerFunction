@@ -10,7 +10,7 @@
 #the Poker Function
 
 def poker(hands):
-    #return the best hand: poker([hand, ...]) => best hand
+    #return the best hand: poker([hand, ...]) => [hand,...]
     return allmax(hands, key = hand_rank) #key = function, returns the max according to the function hand_rank 翻译过来是，使得hand_rank最大的hands）
 def allmax(iterable, key=None):
 	#Return a list of all items equal to the max of the iterable.
@@ -102,7 +102,7 @@ def test():
     If it is not true, then the program will stop and print an error msg. 
     If it is true, it will move on to return test pass
     '''
-    assert poker([s1, s2, ah, sh]) == s2
+    assert poker([s1, s2, ah, sh]) == [s2]
     fkranks = card_ranks(fk)
     tpranks = card_ranks(tp)
     assert kind(4, fkranks) == 9
@@ -118,11 +118,11 @@ def test():
     assert card_ranks(sf) == [10, 9, 8, 7, 6]
     assert card_ranks(fk) == [9, 9, 9, 9, 7]
     assert card_ranks(fh) == [10, 10, 10, 7, 7]
-    assert poker([sf,fk,fh]) == sf 
-    assert poker([fk,fh]) == fk
-    assert poker([fh,fh]) == fh  #extreme value'''
+    assert poker([sf,fk,fh]) == [sf] 
+    assert poker([fk,fh]) == [fk,fk]
+    assert poker([fh,fh]) == [fh]  #extreme value'''
     assert poker([sf]) == sf #检查一手hand'''
-    assert poker([sf] + 99*[fh]) == sf #检查100手也可以运行 '''
+    assert poker([sf] + 99*[fh]) == [sf] #检查100手也可以运行 '''
     assert hand_rank(sf) == (8, 10)  #对每一个函数都要进行test，sf不用加[]，我还不太明白why
     assert hand_rank(fk) == (7, 9, 7)
     assert hand_rank(fh) == (6,10,7)
