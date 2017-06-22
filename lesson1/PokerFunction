@@ -8,7 +8,7 @@
 #在比较所有hands时，不单单是full house和staight flust的比较，full house之间也要比较。所以引入tuples，用第一个数字展示出rank，第二个展示都是rank 7时那个更大
 
 #the Poker Function
-
+import random
 def poker(hands):
     #return the best hand: poker([hand, ...]) => [hand,...]
     return allmax(hands, key = hand_rank) #key = function, returns the max according to the function hand_rank 翻译过来是，使得hand_rank最大的hands）
@@ -131,6 +131,12 @@ def test():
 
 print test()
 
+def deal(numhands, n=5, deck = [r+s for r in '23456789TJQKA' for s in 'SHDC']):
+    #suffle the deck and deal out numhands n-card hands
+    random.shuffle(deck)
+    return [deck[n*i:n*(i+1)]  for i in range(numhands)]
+
+#print(deal(2))
 
 def hand_percentages(n=700*1000):
     #Sample n random hands and print a table of percentages for each type of hand"
