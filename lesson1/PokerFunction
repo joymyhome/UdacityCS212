@@ -1,12 +1,12 @@
+# -*- coding: utf-8 -*
 #max 的使用方法
 #max([3,4,5,0]) 返回 5
 #max([3,4,-5,0], key=abs) 返回-5 give me the maximum accorkding to key=abs(the absolute values of those numbers)
-keyword argument
+#keyword argument
 #当想运行几个案例去test function时，可以用def test()
 #tuples （7,9,5）这是三个数group到一起的set；而且（7,9,3）>(7,3,2)compare from left to right
 #在比较所有hands时，不单单是full house和staight flust的比较，full house之间也要比较。所以引入tuples，用第一个数字展示出rank，第二个展示都是rank 7时那个更大
 
-# -*- coding: utf-8 -*
 #the Poker Function
 
 def poker(hands):
@@ -26,12 +26,12 @@ def card_ranks(hand):
     return ranks
 def straight(ranks):
     #Return True if the ordered ranks form a 5-card straight.
-'''    
-    if ranks.sort(reverse = True) == ranks:  #我这样写报错，why
-    	return True
-    else:
-    	return False
-'''    
+	'''    
+    	if ranks.sort(reverse = True) == ranks:  #我这样写报错，why
+    		return True
+    	else:
+    		return False
+	'''    
     return (max(ranks)-min(ranks) == 4) and len(set(ranks)) == 5 #最大和最小差距为4 而且 all the cards are different
     
 def flush(hand):
@@ -70,7 +70,7 @@ def hand_rank(hand):
         return (4, max(ranks))
     elif kind(3, ranks): #三张
         return (3, kind(3, ranks), ranks)
-    elif two_pair(ranks)#两对
+    elif two_pair(ranks):#两对
         return (2, two_pair(ranks), ranks)
     elif kind(2, ranks):#一对
         return (1, kind(2, ranks), ranks)
