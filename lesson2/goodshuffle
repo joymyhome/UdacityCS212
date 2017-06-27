@@ -1,0 +1,19 @@
+# -*- coding: utf-8 -*
+'''
+Created on 2017-6-27
+
+@author: zj
+'''
+import random
+
+def shuffle(deck):
+    N = len(deck)
+    for i in range(N-1):
+        swap(deck, i, random.randrange(i,N))
+    return deck
+def swap(deck, i, j):
+    print 'swap', i, j
+    deck[i], deck[j] = deck[j], deck[i]
+    
+deck = ['a','b','c','d']
+print shuffle(deck)
