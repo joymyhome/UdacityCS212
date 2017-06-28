@@ -1,0 +1,68 @@
+# -*- coding: utf-8 -*
+'''
+Created on 2017-6-27
+
+@author: zj
+'''
+#In this code, we calculate the rate of each hand by shuffling 10000 times
+#We will discuss about the shuffle code here. What makes a bad shuffle code?
+import random
+from _collections import defaultdict
+
+#1. bad shuffle
+def shuffle1(deck): #input is a list []
+    #bad shuffle Function
+    N = len(deck)
+    swapped = [False] * N
+    while not all(swapped):
+        i, j = random.randrange(N), random.randrange(N)
+        swapped[i] = swapped[j] = True
+        swap(deck, i, j)
+    return deck
+
+def swap(deck, i, j):
+    "Swap elements i and j of a collection."
+#    print 'swap', i, j
+    deck[i], deck[j] = deck[j], deck[i]
+'''
+def chances(times, list): #times is how many times you want to shuffle the list. list is just a list[]
+    allresult = []
+    result = []
+    for i in range(times):
+        target = shuffle(list)
+        if not allresult or target not in set(allresult):
+'''
+#2 good shuffle
+def shuffle(deck):
+    N = len(deck)
+    for i in range(N-1):
+        swap(deck, i, random.randrange(i,N))
+    return deck
+
+
+def test_shuffler(shuffler, deck='abc', n=10000):
+    counts = defaultdict(int)
+    for _ in range(n):
+        input = list(deck)
+        shuffler(input)
+        counts[''.join(input)] +=1
+    e = n*1./factorial(len(deck))
+    ok = all((0.9 <= counts[item]/e <= 1.1)
+             for item in counts)
+    name = shuffler.__name__
+    print '%s(%s) %s' % (name, deck, ('ok' if ok else '*** BAD ***'))
+    print '    ',
+    for item, count in sorted(counts.items()):
+        print "%s:%4.1f%%" % (item, count*100./n),
+    print
+    
+def test_shufflers(shufflers=[shuffle, shuffle1], decks=['abc', 'ab']):
+    for deck in decks:
+        print
+        for f in shufflers:
+            test_shuffler(f, deck)
+            
+def factorial(n):
+    return 1 if (n<=1) else n*factorial(n-1)        
+    
+print test_shuffler(shuffle1, 'abc', 10000)
